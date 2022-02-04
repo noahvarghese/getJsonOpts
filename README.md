@@ -20,7 +20,7 @@
 ![Branches](https://img.shields.io/badge/branches-30%25-red.svg?style=flat)
 <br/>
 
-# NodeJS getopt(s)
+# NodeJS getJsonOpt(s)
 
 ## About
 
