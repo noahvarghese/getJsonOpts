@@ -1,4 +1,1 @@
-export default (_?: unknown) => {
-    _;
-    return false;
-};
+export default (v: unknown) => typeof v === "string" || v instanceof String;
