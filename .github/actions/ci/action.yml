@@ -14,7 +14,7 @@ runs:
       uses: ./.github/actions/cache-node-modules
     - name: "List changed unit tests"
       run: |
-        npm run test:list --  --changedSince "${{ steps.changed.outputs.changed }}"
+        npm run test:list -- --changedSince "${{ steps.changed.outputs.changed }}"
       shell: bash
     - name: test
       run: |
