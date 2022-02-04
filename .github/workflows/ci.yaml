@@ -27,11 +27,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: set npm shell
         run: npm run init:npm-shell
         shell: bash
-      - id: ci
-        uses: ./.github/actions/ci
+      - uses: actions/setup-node@v2
+      - id: cache-node-modules
+        uses: ./.github/actions/cache-node-modules
+      - name: test
+        run: |
+          npm run test:coverage
+        shell: bash
       - name: build
         run: npm run build
       - name: Publish npm log
