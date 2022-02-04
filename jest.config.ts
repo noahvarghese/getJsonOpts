@@ -6,7 +6,10 @@ if (process.argv.includes("--listTests") === false) {
 
 export default {
     bail: true,
-    collectCoverage: false,
+    collectCoverage: true,
+    coverageDirectory: "coverage",
+    collectCoverageFrom: ["src/**/*.ts", "!src/**/*.test.ts"],
+    coverageReporters: ["json", "json-summary", "lcov", "text"],
     detectOpenHandles: true,
     errorOnDeprecated: true,
     forceExit: true,

@@ -9,13 +9,13 @@
 ![Continuous Integration](https://github.com/noahvarghese/getJsonOpts/actions/workflows/ci.yaml/badge.svg)
 <br />
 <br />
-![Statements](https://img.shields.io/badge/statements-63.63%25-red.svg?style=flat)
+![Statements](https://img.shields.io/badge/statements-52.85%25-red.svg?style=flat)
 <br/>
-![Lines](https://img.shields.io/badge/lines-62.79%25-red.svg?style=flat)
+![Lines](https://img.shields.io/badge/lines-52.23%25-red.svg?style=flat)
 <br/>
-![Functions](https://img.shields.io/badge/functions-37.5%25-red.svg?style=flat)
+![Functions](https://img.shields.io/badge/functions-29.62%25-red.svg?style=flat)
 <br/>
-![Branches](https://img.shields.io/badge/branches-30%25-red.svg?style=flat)
+![Branches](https://img.shields.io/badge/branches-38.63%25-red.svg?style=flat)
 <br/>
 <br/>
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
