@@ -32,7 +32,7 @@ export default {
     ],
     roots: ["src"],
     testEnvironment: "node",
-    testRegex: "/src/.*\\.unit\\.(test|spec)?\\.(ts|tsx)$",
+    testRegex: "/src/.*\\.(test|spec)?\\.(ts|tsx)$",
     transform: {
         "^.+\\.ts?$": "ts-jest",
     },

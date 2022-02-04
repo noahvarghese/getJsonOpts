@@ -68,10 +68,6 @@ const LogDataTypes = {
 export function outputStack(layer: number): string {
     const { stack } = new Error();
     const frame = stack?.split("\n")[layer];
-    // const line = frame?.split(":").reverse()[1];
-    // const func = frame?.split(" ")[5];
-    // console.log(frame);
-    // return `${func}:${line}`;
     return frame?.substring(4) ?? "";
 }
 
