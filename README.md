@@ -12,9 +12,12 @@
 <br />
 <br />
 ![Statements](#statements#)
+<br/>
 ![Lines](#lines#)
+<br/>
 ![Functions](#functions#)
 ![Branches](#branches#)
+<br/>
 
 # NodeJS getopt(s)
 
