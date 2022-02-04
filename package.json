@@ -1,0 +1,44 @@
+{
+    "name": "ts-getopts",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "badges": "istanbul-badges-readme --coverageDir='./__test__/coverage'",
+        "init": "npm run init:hooks && npm run init:shell",
+        "init:hooks": "git config core.hooksPath .githooks",
+        "init:shell": "npm config set script-shell /bin/bash",
+        "format": "prettier --write \"**/*.ts\" \"*.json\"",
+        "format:check": "prettier --check \"**/*.ts\"",
+        "test": "./node_modules/.bin/jest --passWithNoTests --runInBand",
+        "test:debug": "npm run enable:recursive && NODE_ENV=test node --inspect-brk ./node_modules/.bin/jest --runInBand --passWithNoTests",
+        "test:recent": "npm run test -- -o",
+        "test:watch": "npm run test -- --watch"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/noahvarghese/getJsonOpts.git"
+    },
+    "keywords": [],
+    "author": "Noah Varghese <noah.varghese@mohawkcollege.ca>",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/noahvarghese/getJsonOpts/issues"
+    },
+    "homepage": "https://github.com/noahvarghese/getJsonOpts#readme",
+    "devDependencies": {
+        "@types/jest": "^27.4.0",
+        "@typescript-eslint/eslint-plugin": "^5.10.2",
+        "@typescript-eslint/parser": "^5.10.2",
+        "dotenv": "^16.0.0",
+        "istanbul-badges-readme": "^1.8.1",
+        "jest": "^27.4.7",
+        "jest-environment-node": "^27.4.6",
+        "jest-html-reporter": "^3.4.2",
+        "nyc": "^15.1.0",
+        "prettier": "^2.5.1",
+        "ts-jest": "^27.1.3",
+        "ts-node": "^10.4.0",
+        "typescript": "^4.5.5"
+    }
+}
