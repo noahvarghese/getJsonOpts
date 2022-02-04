@@ -1,6 +1,4 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-<br />
-<br />
+
 ![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 <br />
 ![npm](https://badges.aleen42.com/src/npm.svg)
@@ -19,6 +17,10 @@
 <br/>
 ![Branches](https://img.shields.io/badge/branches-30%25-red.svg?style=flat)
 <br/>
+<br/>
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<br />
+<br />
 
 # NodeJS getJsonOpt(s)
 
