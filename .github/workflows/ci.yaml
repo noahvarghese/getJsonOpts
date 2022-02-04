@@ -37,7 +37,7 @@ jobs:
         uses: ./.github/actions/cache-node-modules
       - name: test
         run: |
-          npm run test:coverage
+          npm run test
         shell: bash
       - name: build
         run: npm run build
