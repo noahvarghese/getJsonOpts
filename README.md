@@ -7,6 +7,7 @@
 <br />
 <br />
 ![Continuous Deployment](https://github.com/noahvarghese/getJsonOpts/actions/workflows/cd.yaml/badge.svg)
+<br />
 ![Continuous Integration](https://github.com/noahvarghese/getJsonOpts/actions/workflows/ci.yaml/badge.svg)
 <br />
 <br />
