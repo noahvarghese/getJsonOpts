@@ -1,13 +1,12 @@
 import isEmpty from "./lib/isEmpty";
-import Logs from "./util/logs";
 
-type ValidatorMap<T extends string> = {
+export type ValidatorMap<T extends string> = {
     [x in T]: {
         validator: (v?: unknown) => boolean;
     };
 };
 
-type TypeKey =
+export type TypeKey =
     | "string"
     | "number"
     | "undefined"
@@ -17,9 +16,9 @@ type TypeKey =
     | "bigint"
     | "symbol";
 
-type TypeMap = ValidatorMap<TypeKey>;
+export type TypeMap = ValidatorMap<TypeKey>;
 
-type Expected<T extends string> = {
+export type Expected<T extends string> = {
     [x: string]: {
         required: boolean;
         value: unknown;
@@ -27,7 +26,7 @@ type Expected<T extends string> = {
     };
 };
 
-const typeValidators: TypeMap = {
+export const typeValidators: TypeMap = {
     string: {
         validator: (v: unknown) => !isEmpty(v as string),
     },

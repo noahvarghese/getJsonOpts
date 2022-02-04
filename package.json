@@ -5,6 +5,7 @@
     "main": "index.js",
     "scripts": {
         "badges": "istanbul-badges-readme --coverageDir='./__test__/coverage'",
+        "build": "tsc -p ./tsconfig.build.json",
         "init": "npm run init:hooks && npm run init:shell",
         "init:hooks": "git config core.hooksPath .githooks",
         "init:shell": "npm config set script-shell /bin/bash",
