@@ -1,12 +1,15 @@
 import isEmpty from "./isEmpty";
 
-describe("invalid", () => {
+describe("empty", () => {
     const cases = ["", " "];
     test.each(cases)("%p", (val) => {
         expect(isEmpty(val)).toBe(true);
     });
 });
 
-test("valid", () => {
-    expect(isEmpty("valid")).toBe(false);
+describe("types", () => {
+    const cases = [Symbol(), "valid", 123, true, false, {}];
+    test.each(cases)("%p", () => {
+        expect(isEmpty("valid")).toBe(false);
+    });
 });
