@@ -11,12 +11,12 @@
 ![Continuous Integration](https://github.com/noahvarghese/getJsonOpts/actions/workflows/ci.yaml/badge.svg)
 <br />
 <br />
-![Statements](#statements#)
+![Statements](https://img.shields.io/badge/statements-63.63%25-red.svg?style=flat)
 <br/>
-![Lines](#lines#)
+![Lines](https://img.shields.io/badge/lines-62.79%25-red.svg?style=flat)
 <br/>
-![Functions](#functions#)
-![Branches](#branches#)
+![Functions](https://img.shields.io/badge/functions-37.5%25-red.svg?style=flat)
+![Branches](https://img.shields.io/badge/branches-30%25-red.svg?style=flat)
 <br/>
 
 # NodeJS getopt(s)
