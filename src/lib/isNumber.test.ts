@@ -5,7 +5,19 @@ test("valid", () => {
 });
 
 describe.skip("not a number", () => {
-    const cases = ["", undefined, null, {}, Symbol("foo")];
+    const cases = [
+        "",
+        undefined,
+        null,
+        NaN,
+        {},
+        Symbol("foo"),
+        false,
+        true,
+        " ",
+        "test",
+        { test: {} },
+    ];
     test.each(cases)("%p", (n) => {
         expect(isNumber(n)).toBe(false);
     });
