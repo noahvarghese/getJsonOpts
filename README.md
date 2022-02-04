@@ -9,11 +9,11 @@
 ![Continuous Integration](https://github.com/noahvarghese/getJsonOpts/actions/workflows/ci.yaml/badge.svg)
 <br />
 <br />
-![Statements](https://img.shields.io/badge/statements-52.85%25-red.svg?style=flat)
+![Statements](https://img.shields.io/badge/statements-58.57%25-red.svg?style=flat)
 <br/>
-![Lines](https://img.shields.io/badge/lines-52.23%25-red.svg?style=flat)
+![Lines](https://img.shields.io/badge/lines-58.2%25-red.svg?style=flat)
 <br/>
-![Functions](https://img.shields.io/badge/functions-29.62%25-red.svg?style=flat)
+![Functions](https://img.shields.io/badge/functions-33.33%25-red.svg?style=flat)
 <br/>
 ![Branches](https://img.shields.io/badge/branches-38.63%25-red.svg?style=flat)
 <br/>
