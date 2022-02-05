@@ -1,10 +1,14 @@
 import isNumber from "./isNumber";
 
-test("valid", () => {
-    expect(isNumber(123)).toBe(true);
+describe("valid", () => {
+    const cases = [123];
+
+    test.each(cases)("%p", (n) => {
+        expect(isNumber(n)).toBe(true);
+    });
 });
 
-describe.skip("not a number", () => {
+describe("not a number", () => {
     const cases = [
         "",
         undefined,
@@ -18,6 +22,7 @@ describe.skip("not a number", () => {
         "test",
         { test: {} },
     ];
+
     test.each(cases)("%p", (n) => {
         expect(isNumber(n)).toBe(false);
     });

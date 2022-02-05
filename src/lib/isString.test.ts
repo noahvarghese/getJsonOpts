@@ -8,7 +8,16 @@ describe("strings", () => {
 });
 
 describe("not strings", () => {
-    const cases = [BigInt(1), Symbol(), 123, null, undefined, {}, { test: {} }];
+    const cases = [
+        BigInt(1),
+        Symbol(),
+        123,
+        null,
+        undefined,
+        {},
+        { test: {} },
+        NaN,
+    ];
 
     test.each(cases)("%p", (s) => {
         expect(isString(s)).toBe(false);
