@@ -60,6 +60,7 @@ const type = {};
 git clone https://github.com/noahvarghese/get_j_opts
 cd ./get_j_opts
 npm i
+# Configure pre commit hook and set shell preferences
 npm run init
 ```
 
