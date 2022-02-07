@@ -1,4 +1,3 @@
-
 ![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 <br />
 ![npm](https://badges.aleen42.com/src/npm.svg)
@@ -22,10 +21,45 @@
 <br />
 <br />
 
-# NodeJS getJsonOpt(s)
+<img src="https://raw.githubusercontent.com/noahvarghese/logger/main/assets/curly-bracket.png" width="100" alt="Curly brackets" />
 
-## About
+# get_j_opts 
 
 Named for my dislike of the getopt/getopts bash utilities.
 Probably most closely resembles golang's <a href="https://pkg.go.dev/flag">flag module</a>.
 Allows retrieving and checking options in JSON.
+
+## Usage
+
+```typescript
+import getJOpts from "@noahvarghese/get_j_opts";
+
+const formats = {
+    email: {},
+    postal_code: {},
+    phone: {}
+}
+
+const body = {
+    email: {
+        required: true, 
+        type: "string",
+        format: "email" as keyof typeof formats,
+        value: undefined
+    }
+}
+
+const type = {};
+
+
+```
+
+## Development - Getting Started
+
+```bash
+git clone https://github.com/noahvarghese/get_j_opts
+cd ./get_j_opts
+npm i
+npm run init
+```
+
