@@ -55,44 +55,56 @@ export const typeValidators: TypeMap = {
 };
 
 /**
- * T represents a union of strings
+ * T is a Union of strings which can be inferred by usage, it is the possible keys that could be found in the data
+ * X is inferred by usage
+ * @param data JSON to parse
+ * @param options data structure that contains type checking options
+ * @param formatOptions extra formatting checkers that can be applied
+ * @returns
  */
-export default <T extends string, X extends { [x in T]: unknown }>(
+const getJOpts = <T extends string, X extends { [x in T]: unknown }>(
     data: Record<string, unknown>,
     options: Expected<T>,
     formatOptions?: ValidatorMap<T>
 ): X => {
-    if (formatOptions) throw new Error("format options not implemented");
-
-    // create return object
     const returnObj: X = {} as X;
 
-    // Loop over keys of options
     for (const [key, value] of Object.entries(options)) {
-        // check that type is valid
-        if (!types.includes(value.type))
+        if (!typeValidators[value.type])
             throw new Error(`type ${value.type} not found`);
 
-        if (value.format) throw new Error("format checker not implemented");
+        if (
+            (value.format && formatOptions && !formatOptions[value.format]) ||
+            (value.format && !formatOptions)
+        )
+            throw new Error(`${value.format} format checker not implemented`);
 
         const validator = typeValidators[value.type];
 
         try {
-            // check if key exists in data
             if (validator(data[key])) {
+                if (value.format && formatOptions) {
+                    const formatValidator = formatOptions[value.format];
+                    if (!formatValidator(data[key]))
+                        throw new Error(`format invalid -> ${data[key]}`);
+                }
+
                 // if key exists add data to return object
                 returnObj[key as T] = data[key] as X[T];
             } else {
                 // else if value is required by options throw key does not exist in data error
-                if (value.required)
-                    throw new Error(`Key ${key} doest not exist in data`);
+                if (value.required) throw new Error("does not exist in data");
             }
         } catch (_e) {
             const { message } = _e as Error;
-            if (value.required) throw new Error(`${key} -> ${message}`);
-            else Logs.Error(message);
+
+            if (value.required || (value.format && formatOptions))
+                throw new Error(`${key} ${message}`);
+            else Logs.Error(key, message);
         }
     }
 
     return returnObj;
 };
+
+export default getJOpts;
