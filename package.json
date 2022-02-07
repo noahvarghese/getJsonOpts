@@ -1,7 +1,7 @@
 {
     "name": "@noahvarghese/get_j_opts",
     "version": "1.0.0-alpha.0",
-    "description": "",
+    "description": "validate options coming out of a JSON object",
     "main": "build/index.js",
     "scripts": {
         "badges": "istanbul-badges-readme --coverageDir='./coverage'",
