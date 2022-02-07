@@ -41,8 +41,10 @@
         "ts-node": "^10.4.0",
         "typescript": "^4.5.5"
     },
+    "files": [
+        "/build/*"
+    ],
     "dependencies": {
-        "@noahvarghese/logger": "^1.0.0-alpha.0"
-    },
-    "files": ["/build/*"]
+        "@noahvarghese/logger": "^1.0.0"
+    }
 }
