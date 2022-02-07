@@ -21,7 +21,7 @@
 <br />
 <br />
 
-<img src="https://raw.githubusercontent.com/noahvarghese/logger/main/assets/curly-bracket.png" width="100" alt="Curly brackets" />
+<img src="https://raw.githubusercontent.com/noahvarghese/g_j_opts/main/assets/curly-bracket.png" width="100" alt="Curly brackets" />
 
 # get_j_opts 
 
