@@ -36,8 +36,7 @@ jobs:
       - id: cache-node-modules
         uses: ./.github/actions/cache-node-modules
       - name: test
-        run: |
-          npm run test
+        run: npm run test -- -o
         shell: bash
       - name: build
         run: npm run build

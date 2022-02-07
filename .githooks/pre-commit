@@ -11,7 +11,7 @@ CHANGED_UNIT_TEST_FILES=($(npm run --silent test -- -o --listTests))
 if [[ ${#CHANGED_UNIT_TEST_FILES[@]} -gt 0 ]]; then
     echo -e "\n\n[ LOG ]: Unit Tests:"
     printf '%s\n' "${CHANGED_UNIT_TEST_FILES[@]}" 
-    npm run test 
+    npm run test -- -o
 else
     echo -e "\n\n[ INFO ]: No new tests found"
 fi
