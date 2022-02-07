@@ -34,60 +34,34 @@ Allows retrieving and checking options passed in json object.
  * Example app setup using express
  */
 import { Request, Response, Router } from "express";
-import getJOpts, { Expected } from "@noahvarghese/get_j_opts";
+import getJOpts, {
+    Expected,
+    TypeKey,
+    ValidatorMap,
+} from "@noahvarghese/get_j_opts";
 import validator from "validator";
 
 const router = Router();
-
-/**
- * The types used in the library
- */
-const types = [
-    "string",
-    "number",
-    "undefined",
-    "boolean",
-    "object",
-    "function",
-    "bigint",
-    "symbol",
-] as const;
-
-type TypeKey = typeof types[number];
-
-type ValidatorMap<T extends string> = {
-    [x in T]: (v?: unknown) => boolean;
-};
-
-type Expected<T extends string> = {
-    [x: string]: {
-        required: boolean;
-        value: unknown;
-        format?: T;
-    };
-};
-
-type TypeMap = ValidatorMap<TypeKey>;
 
 /**
  * Basic Usage
  */
 
 router.post("/", (req: Request, res: Response): void => {
-    const data: Expected<unknown> = {
+    const body: Expected = {
         email: {
             required: true,
-            type: "string" as TypeKey
-        }
-    }
+            type: "string" as TypeKey,
+        },
+    };
 
-    let body: { email: string };
+    let data: { email: string };
 
     try {
         // Reads data from first parameter using expected values from data
-        body = getJOpts(req.body, data);
-        res.status(200).send(body.email);
-    } catch(_e) {
+        data = getJOpts(req.body, body);
+        res.status(200).send(data.email);
+    } catch (_e) {
         console.error((_e as Error).message);
         // Throws error if a required field does not exist or is not of the type desired
         res.sendStatus(400);
@@ -99,22 +73,37 @@ router.post("/", (req: Request, res: Response): void => {
  * Custom format checkers
  */
 
-// Requires definition of a custom Expected type
-const formats = {
+const keys = ["email"] as const;
+type FormatKeys = typeof keys[number];
+
+const formats: ValidatorMap<FormatKeys> = {
     email: (v: unknown): boolean => validator.isEmail(v),
-}
+};
 
-const body:  = {
-    email: {
-        required: true,
-        type: "string",
-        format: "email" as keyof typeof formats,
+router.put("/", (req: Request, res: Response): void => {
+    const body: Expected<FormatKeys> = {
+        email: {
+            required: true,
+            type: "string",
+            format: "email",
+        },
+    };
+
+    let data: { email: string };
+
+    try {
+        // Reads data from first parameter using expected values from data
+        data = getJOpts(req.body, body, formats);
+        res.status(200).send(body.email);
+    } catch (_e) {
+        console.error((_e as Error).message);
+        // Throws error if a required field does not exist
+        // Or if it exists but is not of the type desired
+        // Or if it exists and the custom formatter fails/returns false
+        // or the format key doesn't match the key of one of the custom format functions
+        res.sendStatus(400);
     }
-}
-
-const type: {email} = getJOpts();
-
-
+});
 ```
 
 ## Development - Getting Started
