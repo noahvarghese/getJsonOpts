@@ -1,9 +1,12 @@
+import isBoolean from "./lib/isBoolean";
 import isEmpty from "./lib/isEmpty";
+import isNumber from "./lib/isNumber";
+import isObj from "./lib/isObj";
+import isString from "./lib/isString";
+import notImplemented from "./lib/notImplemented";
 
 export type ValidatorMap<T extends string> = {
-    [x in T]: {
-        validator: (v?: unknown) => boolean;
-    };
+    [x in T]: (v?: unknown) => boolean;
 };
 
 export type TypeKey =
@@ -27,42 +30,12 @@ export type Expected<T extends string> = {
 };
 
 export const typeValidators: TypeMap = {
-    string: {
-        validator: (v: unknown) => !isEmpty(v as string),
-    },
-    number: {
-        validator: (v: unknown) => !isNaN(Number(v)),
-    },
-    undefined: {
-        validator: () => false,
-    },
-    boolean: {
-        validator: (v: unknown) =>
-            v !== undefined && (v === true || v === false),
-    },
-    function: {
-        validator: (v: unknown) => {
-            throw new Error(`Validator for function type not implemented ${v}`);
-        },
-    },
-    object: {
-        validator: (v: unknown) => {
-            if (v === null) return false;
-            const res =
-                v &&
-                Object.keys(v as Record<string, unknown>).length === 0 &&
-                Object.getPrototypeOf(v) === Object.prototype;
-            return !res;
-        },
-    },
-    bigint: {
-        validator: (v: unknown) => {
-            throw new Error(`Validator for bigint type not implemented ${v}`);
-        },
-    },
-    symbol: {
-        validator: (v: unknown) => {
-            throw new Error(`Validator for symbol type not implemented ${v}`);
-        },
-    },
+    string: (v: unknown) => isString(v) && !isEmpty(v as string),
+    number: isNumber,
+    undefined: () => false,
+    boolean: isBoolean,
+    object: isObj,
+    function: notImplemented,
+    bigint: notImplemented,
+    symbol: notImplemented,
 };

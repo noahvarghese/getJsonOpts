@@ -1,7 +1,8 @@
-import Logs from "./src/util/logs";
+import Logs from "@noahvarghese/logger";
 
 if (process.argv.includes("--listTests") === false) {
-    Logs.Event("Jest config loaded");
+    Logs.init();
+    Logs.Log("Jest config loaded");
 }
 
 export default {

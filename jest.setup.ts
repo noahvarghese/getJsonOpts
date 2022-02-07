@@ -1,6 +1,7 @@
-import Logs from "./src/util/logs";
+import Logs from "@noahvarghese/logger";
 
-Logs.Event("Jest setup loaded");
+Logs.init();
+Logs.Log("Jest setup loaded");
 
 const { TIMEOUT_MULTIPLIER } = process.env;
 
