@@ -32,7 +32,7 @@ export type TypeMap = ValidatorMap<TypeKey>;
 /**
  * T is a union of strings
  */
-export type Expected<T extends string> = {
+export type Expected<T extends string = never> = {
     [x: string]: {
         required: boolean;
         type: TypeKey;
