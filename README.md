@@ -8,13 +8,13 @@
 ![Continuous Integration](https://github.com/noahvarghese/get_j_opts/actions/workflows/ci.yaml/badge.svg)
 <br />
 <br />
-![Statements](https://img.shields.io/badge/statements-69.87%25-red.svg?style=flat)
+![Statements](https://img.shields.io/badge/statements-98.41%25-brightgreen.svg?style=flat)
 <br/>
-![Lines](https://img.shields.io/badge/lines-67.94%25-red.svg?style=flat)
+![Lines](https://img.shields.io/badge/lines-98.18%25-brightgreen.svg?style=flat)
 <br/>
-![Functions](https://img.shields.io/badge/functions-53.84%25-red.svg?style=flat)
+![Functions](https://img.shields.io/badge/functions-100%25-brightgreen.svg?style=flat)
 <br/>
-![Branches](https://img.shields.io/badge/branches-62.71%25-red.svg?style=flat)
+![Branches](https://img.shields.io/badge/branches-97.36%25-brightgreen.svg?style=flat)
 <br/>
 <br/>
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -23,33 +23,96 @@
 
 <img src="https://raw.githubusercontent.com/noahvarghese/get_j_opts/main/assets/curly-bracket.png" width="100" alt="Curly brackets" />
 
-# get_j_opts 
+# get_j_opts
 
-Named for my dislike of the getopt/getopts bash utilities.
-Probably most closely resembles golang's <a href="https://pkg.go.dev/flag">flag module</a>.
-Allows retrieving and checking options in JSON.
+Allows retrieving and checking options passed in json object.
 
 ## Usage
 
 ```typescript
-import getJOpts from "@noahvarghese/get_j_opts";
+/**
+ * Example app setup using express
+ */
+import { Request, Response, Router } from "express";
+import getJOpts, { Expected } from "@noahvarghese/get_j_opts";
+import validator from "validator";
 
+const router = Router();
+
+/**
+ * The types used in the library
+ */
+const types = [
+    "string",
+    "number",
+    "undefined",
+    "boolean",
+    "object",
+    "function",
+    "bigint",
+    "symbol",
+] as const;
+
+type TypeKey = typeof types[number];
+
+type ValidatorMap<T extends string> = {
+    [x in T]: (v?: unknown) => boolean;
+};
+
+type Expected<T extends string> = {
+    [x: string]: {
+        required: boolean;
+        value: unknown;
+        format?: T;
+    };
+};
+
+type TypeMap = ValidatorMap<TypeKey>;
+
+/**
+ * Basic Usage
+ */
+
+router.post("/", (req: Request, res: Response): void => {
+    const data: Expected<unknown> = {
+        email: {
+            required: true,
+            type: "string" as TypeKey
+        }
+    }
+
+    let body: { email: string };
+
+    try {
+        // Reads data from first parameter using expected values from data
+        body = getJOpts(req.body, data);
+        res.status(200).send(body.email);
+    } catch(_e) {
+        console.error((_e as Error).message);
+        // Throws error if a required field does not exist or is not of the type desired
+        res.sendStatus(400);
+    }
+});
+
+/**
+ * Adv. Usage
+ * Custom format checkers
+ */
+
+// Requires definition of a custom Expected type
 const formats = {
-    email: {},
-    postal_code: {},
-    phone: {}
+    email: (v: unknown): boolean => validator.isEmail(v),
 }
 
-const body = {
+const body:  = {
     email: {
-        required: true, 
+        required: true,
         type: "string",
         format: "email" as keyof typeof formats,
-        value: undefined
     }
 }
 
-const type = {};
+const type: {email} = getJOpts();
 
 
 ```
@@ -63,4 +126,3 @@ npm i
 # Configure pre commit hook and set shell preferences
 npm run init
 ```
-
